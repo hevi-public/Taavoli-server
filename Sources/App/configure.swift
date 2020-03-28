@@ -10,6 +10,9 @@ public func configure(_ app: Application) throws {
     app.databases.use(.sqlite(.file("db.sqlite")), as: .sqlite)
 
     app.migrations.add(CreateTodo())
+    
+    app.server.configuration.hostname = "0.0.0.0"
+    app.server.configuration.port = 8080
 
     // register routes
     try routes(app)
