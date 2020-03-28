@@ -1,5 +1,6 @@
 import Fluent
 import Vapor
+import WS
 
 func routes(_ app: Application) throws {
     app.get { req in
@@ -14,4 +15,7 @@ func routes(_ app: Application) throws {
     app.get("todos", use: todoController.index)
     app.post("todos", use: todoController.create)
     app.delete("todos", ":todoID", use: todoController.delete)
+    
+    app.ws.build(.drawingWebSocket).at("drawing").serve()
+    
 }
