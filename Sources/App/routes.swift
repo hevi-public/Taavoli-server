@@ -18,4 +18,6 @@ func routes(_ app: Application) throws {
     
     app.ws.build(.drawingWebSocket).at("drawing").serve()
     
+    app.logger.logLevel = .debug
+    
 }
