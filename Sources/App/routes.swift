@@ -12,11 +12,12 @@ func routes(_ app: Application) throws {
     }
 
     let drawingController = DrawingController()
-    app.get("drawings", use: drawingController.index)
-    app.post("drawings", use: drawingController.create)
-    app.delete("drawings", ":drawingID", use: drawingController.delete)
+    app.get("drawing", use: drawingController.index)
+    app.post("drawing", use: drawingController.create)
+    app.put("drawing", ":drawingID", use: drawingController.update)
+    app.delete("drawing", ":drawingID", use: drawingController.delete)
     
-    app.ws.build(.drawingWebSocket).at("drawing").serve()
+    app.ws.build(.drawingWebSocket).at("ws/drawing").serve()
     
     app.logger.logLevel = .debug
     
