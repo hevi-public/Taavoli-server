@@ -6,7 +6,7 @@ final class Drawing: Model, Content {
     
     @ID(key: .id)
     var id: UUID?
-
+    
     @Field(key: "title")
     var title: String
     

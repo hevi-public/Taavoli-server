@@ -14,7 +14,7 @@ func routes(_ app: Application) throws {
     let drawingController = DrawingController()
     app.get("drawing", use: drawingController.index)
     app.post("drawing", use: drawingController.create)
-    app.put("drawing", ":drawingID", use: drawingController.update)
+    app.put("drawing", use: drawingController.update)
     app.delete("drawing", ":drawingID", use: drawingController.delete)
     
     app.ws.build(.drawingWebSocket).at("ws/drawing").serve()
