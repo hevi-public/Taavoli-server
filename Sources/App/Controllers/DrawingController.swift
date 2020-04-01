@@ -6,6 +6,17 @@ struct DrawingController {
         return Drawing.query(on: req.db).all()
     }
     
+    func get(req: Request) throws -> EventLoopFuture<Drawing> {
+        
+        let idString = req.parameters.get("drawingID") ?? ""
+        print("drawingId: " + idString)
+        let id = UUID(idString)
+        return Drawing.find(id, on: req.db)
+            .unwrap(or: Abort(.notFound))
+            .map { $0 }
+            
+    }
+    
     func create(req: Request) throws -> EventLoopFuture<Drawing> {
         let drawing = try req.content.decode(Drawing.self)
         return drawing.save(on: req.db).map { drawing }
